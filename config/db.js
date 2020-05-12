@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uri = process.env.productionMongoURI ? require('./default').productionMongoURI : require('./default').developmentMongoURI;
+const uri = process.env.PRODUCTION ? require('./default').productionMongoURI : require('./default').developmentMongoURI;
 
 // Connect to MongoDB
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true})
