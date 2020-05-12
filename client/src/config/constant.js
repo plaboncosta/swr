@@ -1,3 +1,4 @@
+
 const production = true;
 const domain = production ? 'http://45.132.242.146/' : 'http://localhost:5000/';
 
