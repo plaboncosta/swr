@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb://root:1122334455&*(@45.132.242.146:27017/shopify-wholesale-register?authSource=shopify-wholesale-register"
+  "productionMongoURI": "mongodb://root:1122334455&*(@45.132.242.146:27017/shopify-wholesale-register?authSource=shopify-wholesale-register",
+  "developmentMongoURI": "mongodb://localhost:27017/shopify-wholesale-register"
 }
