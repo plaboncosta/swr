@@ -44,6 +44,7 @@ app.use(session({
 const User = require('./routes/user');
 const Customer = require('./routes/customer');
 const WholesaleRegister = require('./routes/wholesale_register');
+const Mail = require('./routes/mail');
 
 
 // Router Declaration
@@ -94,6 +95,7 @@ app.get('/shopify/callback', (req, res) => {
 app.use('/api/user', User);
 app.use('/api/customer', Customer);
 app.use('/api/wholesale/register', WholesaleRegister);
+app.use('/api/mail', Mail);
 
 
 
