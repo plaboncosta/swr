@@ -178,7 +178,7 @@ class Dashboard extends Component {
                     <Column field={'first_name'} header={'First Name'} sortable={true} filter={true}
                             filterPlaceholder={'First Name'}/>
                     <Column field={'last_name'} header={'Last Name'} sortable={true} filter={true} filterPlaceholder={'Last Name'}/>
-                    <Column field={'email'} header={'Email'} sortable={true} filter={true} filterPlaceholder={'Email'}/>
+                    <Column style={{width: '250px'}} field={'email'} header={'Email'} sortable={true} filter={true} filterPlaceholder={'Email'}/>
                     <Column field={'phone'} header={'Phone'} sortable={true} filter={true} filterPlaceholder={'Phone'}/>
                     <Column field={'status'} header={'Status'} sortable={true} filter={true} filterPlaceholder={'Status'}/>
                     <Column className="d-flex" body={this.getActions} header={'Actions'}/>
@@ -193,7 +193,7 @@ class Dashboard extends Component {
                     <Column field={'first_name'} header={'First Name'} sortable={true} filter={true}
                             filterPlaceholder={'First Name'}/>
                     <Column field={'last_name'} header={'Last Name'} sortable={true} filter={true} filterPlaceholder={'Last Name'}/>
-                    <Column field={'email'} header={'Email'} sortable={true} filter={true} filterPlaceholder={'Email'}/>
+                    <Column style={{width: '250px'}} field={'email'} header={'Email'} sortable={true} filter={true} filterPlaceholder={'Email'}/>
                     <Column field={'phone'} header={'Phone'} sortable={true} filter={true} filterPlaceholder={'Phone'}/>
                     <Column field={'address'} header={'Address'} sortable={true} filter={true} filterPlaceholder={'Address'}/>
                     <Column field={'city'} header={'City'} sortable={true} filter={true} filterPlaceholder={'City'}/>

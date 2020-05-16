@@ -1,8 +1,9 @@
-const express = require('express');
-const router  = express.Router();
-const shopify = require('../config/shopify-api');
-const User    = require('../models/users');
-const Status  = require('../models/statuses');
+const express          = require('express');
+const router           = express.Router();
+const shopify          = require('../config/shopify-api');
+const User             = require('../models/users');
+const Status           = require('../models/statuses');
+const gmailTransporter = require('../config/mail').gmailTransporter;
 
 // Get All Customer
 // uri = api/customer/all
@@ -31,10 +32,10 @@ router.post('/create', async (req, res) => {
         const address   = {
             first_name,
             last_name,
-            country_code : 'BD',
-            password: '12345678',
-            password_confirmation: '12345678',
-            send_email_welcome: ''
+            country_code          : 'BD',
+            password              : '12345678',
+            password_confirmation : '12345678',
+            send_email_welcome    : ''
         };
         
         if (phone) Object.assign(address, {phone});
@@ -57,6 +58,34 @@ router.post('/create', async (req, res) => {
         const status         = await shopify.customer.create(newCustomer);
         const approve_status = await Status.findOne({code : "3"});
         const update_user    = await User.findByIdAndUpdate(_id, {is_approve : 1, status : approve_status});
+        
+        const info = {
+            from    : process.env.SEND_EMAIL,
+            to      : email,
+            subject : "Account Approved",
+            html    : `
+                <h4>Hi ${first_name},</h4>
+                <p>We have approved your account. You can now login on our store.</p>
+                <br>
+                <p>Regards</p>
+                <p>Shopify Wholesale Register App Team.</p>
+            `
+        };
+        if (update_user) await gmailTransporter.sendMail(info);
+    
+        const replyInfo = {
+            from    : process.env.SEND_EMAIL,
+            to      : process.env.SEND_EMAIL,
+            subject : "Account Approval Confirmation",
+            html    : `
+                <p>New Customer (${first_name} ${last_name}) approved successfully.</p>
+                <br>
+                <p>Regards</p>
+                <p>Shopify Wholesale Register App Team.</p>
+            `
+        };
+        if (update_user) await gmailTransporter.sendMail(replyInfo);
+        
         
         if (status) return res.status(200).json({msg : 'New User approved successfully!', success : true});
     } catch (err) {

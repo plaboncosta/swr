@@ -3,6 +3,7 @@ const User = require('../models/users');
 const Status = require('../models/statuses');
 const UserRole = require('../models/user_roles');
 const router = express.Router();
+const gmailTransporter = require('../config/mail').gmailTransporter;
 
 // @route GET api/user/not/approve/all
 // @desc Populate Not Approve User Data
@@ -83,9 +84,23 @@ router.get('/delete/:id', async (req, res) => {
         
         const user_exist = await User.findOne({_id: id});
         if (!user_exist) return res.status(400).json({msg: 'User didn\'t found!', error: true});
+    
+        const info = {
+            from    : process.env.SEND_EMAIL,
+            to      : user_exist.email,
+            subject : "Account Declined",
+            html    : `
+                <h4>Hi ${user_exist.first_name},</h4>
+                <p>We are very much sorry for declining your account.</p>
+                <br>
+                <p>Regards</p>
+                <p>Shopify Wholesale Register App Team.</p>
+            `
+        };
+        await gmailTransporter.sendMail(info);
         
         const status = await User.findOneAndDelete({_id: id});
-        if(!status) res.status(400).json({msg: 'Please try again with full information!'});
+        if(!status) return res.status(400).json({msg: 'Please try again with full information!'});
         
         return res.status(200).json({msg: 'User Deleted Successfully!', success: true});
     } catch (err) {
