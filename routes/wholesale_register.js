@@ -4,6 +4,21 @@ const {v4: uuidv4} = require('uuid');
 const router = express.Router();
 
 
+
+// @route GET api/wholesale/register/all/token
+// @desc Populate Wholesale Register Token
+// @access private
+router.get('/all/token', async (req, res) => {
+    try {
+        const wholesale_register = await WholesaleRegister.find({}, {token: 1});
+        return res.status(200).json(wholesale_register);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json(err);
+    }
+});
+
+
 // @route GET api/wholesale/register/by/token
 // @desc Populate Wholesale Register Form By Token
 // @access private

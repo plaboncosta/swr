@@ -80,7 +80,7 @@ class Navigation extends React.Component {
                 <li className="nav-item">
                     <Link className={`nav-link ${path === '/embed/form' && 'active'}`} to="/embed/form">
                         <i className="icofont-code"/>
-                        <span className="ml-2">Test Embed Form</span>
+                        <span className="ml-2">Your Embed Form</span>
                     </Link>
                 </li>
             </ul>
