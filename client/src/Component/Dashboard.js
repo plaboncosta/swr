@@ -69,9 +69,9 @@ class Dashboard extends Component {
                         last_name  : item.last_name ? item.last_name : '',
                         email      : item.email ? item.email : '',
                         phone      : item.phone ? item.phone : '',
-                        address    : item.default_address.address1 ? item.default_address.address1 : '',
-                        city       : item.default_address.city ? item.default_address.city : '',
-                        country    : item.default_address.country_name ? item.default_address.country_name : ''
+                        address    : item.default_address ? item.default_address.address1 : '',
+                        city       : item.default_address ? item.default_address.city : '',
+                        country    : item.default_address ? item.default_address.country_name : ''
                     };
                     
                 });
