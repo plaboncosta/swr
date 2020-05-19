@@ -180,7 +180,7 @@ class EmbedForm extends Component {
                          {input_field && input_field.map(item => {
                              return item.trim();
                          })}
-                         &lt;button type="submit" className="btn btn-info px-3 py-1"&gt;Save&lt;/button&gt;
+                         &lt;button type="submit" class="btn btn-info px-3 py-1"&gt;Save&lt;/button&gt;
                          &lt;/form&gt;
                      </div>
                  </div>
