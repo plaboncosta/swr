@@ -4,6 +4,8 @@ import {backendApiUrl}    from "../config/constant";
 import ReactHtmlParser    from 'react-html-parser';
 import AlertMessage       from "./utility/AlertMessage";
 
+// onSubmit={this.customerFormSubmit} id="customerFormSubmit"
+
 class EmbedForm extends Component {
     constructor(props) {
         super(props);
@@ -93,12 +95,9 @@ class EmbedForm extends Component {
     
     render() {
         const {error, errorMessage, success, successMessage, wholesale_register, tokenList} = this.state;
-        const viewField                                                                            = Object.keys(
-            wholesale_register).length > 0 &&
-                                                                                                     Object.keys(
-                                                                                                         wholesale_register.show_hide)
-                                                                                                           .filter(
-                                                                                                               item => wholesale_register.show_hide[item]);
+        
+        const viewField = Object.keys(wholesale_register).length > 0 && Object.keys(wholesale_register.show_hide)
+                                .filter(item => wholesale_register.show_hide[item]);
         
         const input_field = Object.keys(wholesale_register).length > 0 &&
                             viewField.map((item, index) => {
@@ -121,6 +120,8 @@ class EmbedForm extends Component {
                             </div>`;
                                 }
                             });
+        
+        console.log(input_field);
         
         return <>
             <div className="container">
@@ -151,7 +152,7 @@ class EmbedForm extends Component {
                                 </div>
                             </div>
                         </form>
-                        <form onSubmit={this.customerFormSubmit} id="customerFormSubmit">
+                        <form action={`${backendApiUrl}api/user/create`} method={'post'}>
                             <div className="row mt-3">
                                 {input_field && input_field.map((item, index) => (
                                     <React.Fragment key={index}>
@@ -179,6 +180,7 @@ class EmbedForm extends Component {
                          {input_field && input_field.map(item => {
                              return item.trim();
                          })}
+                         &lt;button type="submit" className="btn btn-info px-3 py-1"&gt;Save&lt;/button&gt;
                          &lt;/form&gt;
                      </div>
                  </div>

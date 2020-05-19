@@ -65,13 +65,13 @@ class Dashboard extends Component {
                           }, () => {
                 const existUserTableData = res.data.length > 0 && res.data.map(item => {
                     return {
-                        first_name : item.first_name,
-                        last_name  : item.last_name,
-                        email      : item.email,
-                        phone      : item.phone,
-                        address    : item.default_address.address1,
-                        city       : item.default_address.city,
-                        country    : item.default_address.country_name
+                        first_name : item.first_name ? item.first_name : '',
+                        last_name  : item.last_name ? item.last_name : '',
+                        email      : item.email ? item.email : '',
+                        phone      : item.phone ? item.phone : '',
+                        address    : item.default_address.address1 ? item.default_address.address1 : '',
+                        city       : item.default_address.city ? item.default_address.city : '',
+                        country    : item.default_address.country_name ? item.default_address.country_name : ''
                     };
                     
                 });

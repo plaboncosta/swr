@@ -38,6 +38,7 @@ router.get('/approve/all', async (req, res) => {
 // @access private
 router.post('/create', async (req, res) => {
     try {
+        return res.json(req.body);
         const {first_name, last_name, email, phone, company, address1, address2, city, province, country, zip, details} = req.body;
 
         const status = await Status.findOne({code: "1"});

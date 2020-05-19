@@ -30,6 +30,7 @@ const scopes = ['read_content', 'write_content', 'read_themes', 'write_themes', 
 app.use(express.json({extended: false}));
 app.use(cors());
 app.use(helmet());
+app.use(express.urlencoded());
 
 
 // Initialize Session
