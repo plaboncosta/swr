@@ -176,7 +176,7 @@ class EmbedForm extends Component {
                          <h6 className="m-0">Customer Form HTML Code</h6>
                      </div>
                      <div className="card-body" id="custom-form-show-area">
-                         &lt;form&gt;
+                         &lt;form action={`${backendApiUrl}api/user/create`} method={'post'}&gt;
                          {input_field && input_field.map(item => {
                              return item.trim();
                          })}
