@@ -22,7 +22,7 @@
     "express-session": "^1.17.1",
     "helmet": "^3.22.0",
     "mongoose": "^5.9.9",
-    "nodemailer": "^6.4.6",
+    "nodemailer": "^6.4.16",
     "nodemon": "^2.0.3",
     "nonce": "^1.0.4",
     "react-html-parser": "^2.0.2",
